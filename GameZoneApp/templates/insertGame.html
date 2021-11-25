@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image:url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v462-n-130-textureidea_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&auto=format&ixlib=js-2.2.1&s=fb751b844b04b0e54e5895f144f5ab9d");  
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }  
+    </style>  
+    <title> Game Zone App </title>
+</head>
+
+<body>
+    <left>
+        <a href="{% url 'HomePage' %}">
+            <button>HomePage</button>
+        </a>
+    </left>
+    
+    <left>
+        <a href="{% url 'showGame' %}">
+            <button>Game Database</button>
+        </a>
+    </left>
+
+    <center>
+        <h1 style="color:white;"> Insert Game </h1>
+        <hr/>
+        <form method="POST">
+            {% csrf_token %}
+        <table border="1" bgcolor="lightblue">
+            <tr>
+                <td> Game ID </td>
+                <td><input type="text" placeholder="Enter Game ID" name="game_id"></td>
+            </tr>
+            <tr>
+                <td> Game Name </td>
+                <td><input type="text" placeholder="Enter Game Name" name="game_name"></td>
+            </tr>
+            <tr>
+                <td> Game Type </td>
+                <td><input type="radio" name="game_type" value="Racing">Racing </br>
+                    <input type="radio" name="game_type" value="FPS">FPS </br>
+                    <input type="radio" name="game_type" value="Arcade">Arcade </br>
+                    <input type="radio" name="game_type" value="Open World">Open World </br>
+                    <input type="radio" name="game_type" value="RPG">RPG
+                </td>
+            </tr>
+            <tr>
+                <td> Age Restrictions </td>
+                <td><input type="text" placeholder="Enter Age Restriction" name="age_rest"></td>
+            </tr>
+            <tr>
+                <td> Height Restrictions </td>
+                <td><input type="text" placeholder="Enter Height Restriction" name="height_rest"></td>
+            </tr>
+            <tr>
+                <td> Rate </td>
+                <td><input type="text" placeholder="Enter Rate" name="rate"></td>
+            </tr>
+            <tr>
+                <td> Duration </td>
+                <td><input type="text" placeholder="Enter Duration" name="duration"></td>
+            </tr>
+            <tr>
+                <td> <input type="submit" value="Insert"/> </td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: red;">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    </center>
+</body>
+</html>

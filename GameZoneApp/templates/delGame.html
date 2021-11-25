@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image:url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v462-n-130-textureidea_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&auto=format&ixlib=js-2.2.1&s=fb751b844b04b0e54e5895f144f5ab9d");  
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }  
+    </style>  
+    <title> Game Zone App </title>
+</head>
+
+<body>
+<left>
+    <a href="{% url 'HomePage' %}">
+        <button>HomePage</button>
+    </a>
+</left>
+
+<left>
+    <a href="{% url 'showGame' %}">
+        <button>Game Database</button>
+    </a>
+</left>
+
+<left>
+    <a href="{% url 'insertGame' %}">
+        <button>Insert Game</button>
+    </a>
+</left>
+
+    <center>
+        <h1 style="color:white;"> Delete Game Record </h1>
+    </hr>
+
+        <form method="POST" action="/deletedGame/{{Game.game_id}}">
+            {% csrf_token%}
+        <table border="1" bgcolor="lightblue">
+            <tr>
+                <td>Game ID</td>
+                <td><input type="text" name="game_id" value="{{Game.game_id}}" readonly></td>
+            </tr>
+
+            <tr>
+                <td>Game Name</td>
+                <td><input type="text" name="game_name" value="{{Game.game_name}}" readonly></td>
+            </tr>
+
+            <tr>
+                <td>Game Type</td>
+                <td><input type="text" name="game_type" value="{{Game.game_type}}" readonly></td>
+            </tr>
+
+            <tr>
+                <td>Age Restriction</td>
+                <td><input type="text" name="age_rest" value="{{Game.age_rest}}" readonly></td>
+            </tr>
+
+            <tr>
+                <td>Height Restriction</td>
+                <td><input type="text" name="height_rest" value="{{Game.height_rest}}" readonly></td>
+            </tr>
+
+            <tr>
+                <td>Rate</td>
+                <td><input type="text" name="rate" value="{{Game.rate}}" readonly></td>
+            </tr>
+
+            <tr>
+                <td>Duration</td>
+                <td><input type="text" name="duration" value="{{Game.duration}}" readonly></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Delete Record"></td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: red;">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    </center>
+</body>
+</html>
